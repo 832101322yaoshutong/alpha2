@@ -1,0 +1,63 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+public class PuzzleGameUI : MonoBehaviour
+{
+    public Text puzzleTitle;
+    public Button[] puzzleButtons;
+    public GameObject puzzleObject;
+
+    private bool isPuzzleSolved = false;
+
+    void Start()
+    {
+        // 设置谜题标题
+        puzzleTitle.text = "解谜游戏";
+
+        // 设置谜题按钮的点击事件
+        foreach (Button button in puzzleButtons)
+        {
+            button.onClick.AddListener(OnPuzzleButtonClick);
+        }
+    }
+
+    void OnPuzzleButtonClick()
+    {
+        // 检查是否已解谜
+        if (isPuzzleSolved)
+        {
+            Debug.Log("谜题已解决");
+            return;
+        }
+
+        // 处理谜题按钮点击事件
+        Button clickedButton = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
+
+        // 根据不同的按钮执行不同的操作
+        if (clickedButton.name == "Button1")
+        {
+            Debug.Log("点击了按钮1");
+        }
+        else if (clickedButton.name == "Button2")
+        {
+            Debug.Log("点击了按钮2");
+        }
+        else if (clickedButton.name == "Button3")
+        {
+            Debug.Log("点击了按钮3");
+        }
+
+        // 检查是否解谜成功
+        if (CheckPuzzleSolved())
+        {
+            isPuzzleSolved = true;
+            Debug.Log("解谜成功");
+        }
+    }
+
+    bool CheckPuzzleSolved()
+    {
+        // 检查谜题是否解谜成功的逻辑
+        return true;
+    }
+}
